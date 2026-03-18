@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - Black Oracle Shop</title>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+        /* Same CSS as index.html */
+        :root { ... } /* Paste CSS from index.html here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RESET TERMINAL ACCESS</h1>
+        <form id="resetForm">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="resetUser" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="resetEmail" required>
+            </div>
+            <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITEKEY"></div>
+            <button type="submit" class="btn">SEND RESET LINK</button>
+        </form>
+        <div style="margin-top: 20px;">
+            <a href="index.html" style="color:var(--red); text-decoration:none;">← BACK TO LOGIN</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('resetForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In real implementation: send reset link to email
+            alert("Password reset link sent. Check your inbox.");
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>

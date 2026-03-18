@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Oracle Shop</title>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #e0e0e0;
+            --green: #00FF00;
+            --blue: #006094;
+            --red: #7D1E4C;
+            --card-bg: #121212;
+        }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: var(--green);
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+            margin: 20px 0;
+        }
+        .welcome {
+            background: var(--card-bg);
+            padding: 20px;
+            border: 1px solid var(--blue);
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin: 15px 0;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--green);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            background: #1e1e1e;
+            border: 1px solid var(--blue);
+            color: white;
+            border-radius: 4px;
+        }
+        .btn {
+            background: var(--blue);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .btn:hover {
+            background: var(--green);
+            color: black;
+        }
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        .links a {
+            color: var(--red);
+            text-decoration: none;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BLACK ORACLE SHOP</h1>
+        <div class="welcome" id="welcomeMsg">
+            <!-- Dynamically populated by JS -->
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label>Email / Username</label>
+                <input type="text" id="loginUser" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPass" required>
+            </div>
+            <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITEKEY"></div>
+            <button type="submit" class="btn">ACCESS TERMINAL</button>
+        </form>
+        
+        <div class="links">
+            <a href="register.html">CREATE ACCOUNT</a>
+            <a href="forgot.html">FORGOT PASSWORD?</a>
+        </div>
+    </div>
+
+    <script>
+        // Detect country/timezone
+        function getUserCountry() {
+            const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            const tzToCountry = {
+                "America/New_York": "US", "Europe/London": "GB", "Asia/Tokyo": "JP",
+                "Australia/Sydney": "AU", "Europe/Berlin": "DE", "Asia/Kolkata": "IN"
+                // Add more mappings as needed
+            };
+            return tzToCountry[tz] || "UNKNOWN";
+        }
+
+        function getLocalTime() {
+            return new Date().toLocaleString();
+        }
+
+        // Set welcome message
+        document.addEventListener('DOMContentLoaded', () => {
+            const country = getUserCountry();
+            const time = getLocalTime();
+            document.getElementById('welcomeMsg').innerHTML = `
+                <p>✧ WELCOME, ANONYMOUS GUEST ✧</p>
+                <p>Your location: <span style="color:#00FF00">${country}</span> | 
+                Local time: <span style="color:#00FF00">${time}</span></p>
+                <p>Access granted only to verified operatives.</p>
+            `;
+        });
+
+        // Form submission (pseudo-validation)
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Login requires prior registration. Redirecting to signup...");
+            window.location.href = "register.html";
+        });
+    </script>
+</body>
+</html>

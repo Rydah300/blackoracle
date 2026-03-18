@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify - Black Oracle Shop</title>
+    <style>
+        /* Same CSS as index.html */
+        :root { ... } /* Paste CSS from index.html here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>VERIFY YOUR IDENTITY</h1>
+        <div class="welcome">
+            <p>Enter the 6-digit code sent to your email:</p>
+        </div>
+        <form id="verifyForm">
+            <div class="form-group">
+                <input type="text" id="code" placeholder="XXXXXX" maxlength="6" required style="text-align:center; font-size:24px;">
+            </div>
+            <button type="submit" class="btn">CONFIRM ACCESS</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('verifyForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In real implementation: validate code against backend
+            alert("Identity confirmed. Welcome to Black Oracle.");
+            window.location.href = "dashboard.html"; // Blank page as requested
+        });
+    </script>
+</body>
+</html>
